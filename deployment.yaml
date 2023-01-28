@@ -1,0 +1,124 @@
+AWSTemplateFormatVersion: 2010-09-09
+Description: "Cloud fromation template for api gateway"
+Parameters:
+  Environment:
+    Description: Environment Name
+    Type: String
+    Default: "Dev"
+Resources:
+  lambdaFunctionIamRole:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service: lambda.amazonaws.com
+            Action: sts:AssumeRole
+      Policies:
+        - PolicyName: "cf-lambda-policy"
+          PolicyDocument:
+            Version: "2012-10-17"
+            Statement:
+              - Effect: "Allow"
+                Action:
+                  - "logs:CreateLogGroup"
+                  - "logs:CreateLogStream"
+                  - "logs.PutLogEvents"
+                Resource: "*"
+  lambdaFunctionGetProduct:
+    Type: AWS::Lambda::Function
+    Properties:
+      Description: "GetProduct lambda"
+      FunctionName: !Sub GetProduct-${Environment}
+      Handler: GetProduct::GetProduct.Function::FunctionHandler
+      MemorySize: 256
+      Role: !GetAtt lambdaFunctionIamRole.Arn
+      Runtime: dotnet6
+      Timeout: 30
+      Environment:
+        Variables:
+          key1: value1
+      Code:
+        S3Bucket: cf-lambda-packages
+        S3Key: !Sub ${Environment}-GetProduct.zip
+      Tags:
+        - Key: keyname
+          Value: value
+  lambdaFunctionAddProduct:
+    Type: AWS::Lambda::Function
+    Properties:
+      Description: "AddProduct lambda"
+      FunctionName: !Sub AddProduct-${Environment}
+      Handler: AddProduct::AddProduct.Function::FunctionHandler
+      MemorySize: 256
+      Role: !GetAtt lambdaFunctionIamRole.Arn
+      Runtime: dotnet6
+      Timeout: 30
+      Environment:
+        Variables:
+          key1: value1
+      Code:
+        S3Bucket: cf-lambda-packages
+        S3Key: !Sub ${Environment}-AddProduct.zip
+      Tags:
+        - Key: keyname
+          Value: value
+  lambdaFunctionUpdateProduct:
+    Type: AWS::Lambda::Function
+    Properties:
+      Description: "UpdateProduct lambda"
+      FunctionName: !Sub UpdateProduct-${Environment}
+      Handler: UpdateProduct::UpdateProduct.Function::FunctionHandler
+      MemorySize: 256
+      Role: !GetAtt lambdaFunctionIamRole.Arn
+      Runtime: dotnet6
+      Timeout: 30
+      Environment:
+        Variables:
+          key1: value1
+      Code:
+        S3Bucket: cf-lambda-packages
+        S3Key: !Sub ${Environment}-UpdateProduct.zip
+      Tags:
+        - Key: keyname
+          Value: value
+  lambdaFunctionDeleteProduct:
+    Type: AWS::Lambda::Function
+    Properties:
+      Description: "DeleteProduct lambda"
+      FunctionName: !Sub DeleteProduct-${Environment}
+      Handler: DeleteProduct::DeleteProduct.Function::FunctionHandler
+      MemorySize: 256
+      Role: !GetAtt lambdaFunctionIamRole.Arn
+      Runtime: dotnet6
+      Timeout: 30
+      Environment:
+        Variables:
+          key1: value1
+      Code:
+        S3Bucket: cf-lambda-packages
+        S3Key: !Sub ${Environment}-DeleteProduct.zip
+      Tags:
+        - Key: keyname
+          Value: value
+  lambdaFunctionRootOperation:
+    Type: AWS::Lambda::Function
+    Properties:
+      Description: "RootOperation lambda"
+      FunctionName: !Sub RootOperation-${Environment}
+      Handler: RootOperation::RootOperation.Function::FunctionHandler
+      MemorySize: 256
+      Role: !GetAtt lambdaFunctionIamRole.Arn
+      Runtime: dotnet6
+      Timeout: 30
+      Environment:
+        Variables:
+          key1: value1
+      Code:
+        S3Bucket: cf-lambda-packages
+        S3Key: !Sub ${Environment}-RootOperation.zip
+      Tags:
+        - Key: keyname
+          Value: value
