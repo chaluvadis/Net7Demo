@@ -4,7 +4,7 @@ Parameters:
   Environment:
     Description: Environment Name
     Type: String
-    Default: "Dev"
+    Default: Dev
 Resources:
   lambdaFunctionIamRole:
     Type: AWS::IAM::Role

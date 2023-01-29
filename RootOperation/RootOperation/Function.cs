@@ -1,6 +1,6 @@
 using Amazon.Lambda.Core;
 using Amazon.Lambda.APIGatewayEvents;
-
+using System.Text.Json;
 // Assembly attribute to enable the Lambda function's JSON input to be converted into a .NET class.
 [assembly: LambdaSerializer(typeof(Amazon.Lambda.Serialization.SystemTextJson.DefaultLambdaJsonSerializer))]
 
@@ -17,6 +17,7 @@ public class Function
     /// <returns></returns>
     public string FunctionHandler(APIGatewayProxyRequest request, ILambdaContext context)
     {
-        return $"RootOperation - {request.Body.ToUpper()}";
+        var jsonString = JsonSerializer.Serialize(request.Body);
+        return $"RootOperation - {jsonString}";
     }
 }
