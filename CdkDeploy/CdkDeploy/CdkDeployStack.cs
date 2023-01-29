@@ -11,7 +11,7 @@ public class CdkDeployStack : Stack
         var getProductLambda = new Function(this, "GetProduct-Dev", new FunctionProps
         {
             Runtime = Runtime.DOTNET_6,
-            Code = Code.FromAsset("/Users/hola/Documents/myworks/learn-aws/Net7Demo/GetProduct/GetProduct/bin/Release/net6.0/publish"),
+            Code = Code.FromAsset("/Users/hola/Documents/myworks/learn-aws/Net7Demo/GetProduct/bin/Release/net6.0/publish"),
             Handler = "GetProduct::GetProduct.Function::FunctionHandler",
             FunctionName = "GetProduct-Dev"
         });
@@ -19,7 +19,7 @@ public class CdkDeployStack : Stack
         var addProductLambda = new Function(this, "AddProduct-Dev", new FunctionProps
         {
             Runtime = Runtime.DOTNET_6,
-            Code = Code.FromAsset("/Users/hola/Documents/myworks/learn-aws/Net7Demo/AddProduct/AddProduct/bin/Release/net6.0/publish"),
+            Code = Code.FromAsset("/Users/hola/Documents/myworks/learn-aws/Net7Demo/AddProduct/bin/Release/net6.0/publish"),
             Handler = "AddProduct::AddProduct.Function::FunctionHandler",
             FunctionName = "AddProduct-Dev"
         });
@@ -27,21 +27,21 @@ public class CdkDeployStack : Stack
         var updateProductLambda = new Function(this, "UpdateProduct-Dev", new FunctionProps
         {
             Runtime = Runtime.DOTNET_6,
-            Code = Code.FromAsset("/Users/hola/Documents/myworks/learn-aws/Net7Demo/UpdateProduct/UpdateProduct/bin/Release/net6.0/publish"),
+            Code = Code.FromAsset("/Users/hola/Documents/myworks/learn-aws/Net7Demo/UpdateProduct/bin/Release/net6.0/publish"),
             Handler = "UpdateProduct::UpdateProduct.Function::FunctionHandler",
             FunctionName = "UpdateProduct-Dev"
         });
         var deleteProductLambda = new Function(this, "DeleteProduct-Dev", new FunctionProps
         {
             Runtime = Runtime.DOTNET_6,
-            Code = Code.FromAsset("/Users/hola/Documents/myworks/learn-aws/Net7Demo/DeleteProduct/DeleteProduct/bin/Release/net6.0/publish"),
+            Code = Code.FromAsset("/Users/hola/Documents/myworks/learn-aws/Net7Demo/DeleteProduct/bin/Release/net6.0/publish"),
             Handler = "DeleteProduct::DeleteProduct.Function::FunctionHandler",
             FunctionName = "DeleteProduct-Dev"
         });
         var rootOperationLambda = new Function(this, "RootOperation-Dev", new FunctionProps
         {
             Runtime = Runtime.DOTNET_6,
-            Code = Code.FromAsset("/Users/hola/Documents/myworks/learn-aws/Net7Demo/RootOperation/RootOperation/bin/Release/net6.0/publish"),
+            Code = Code.FromAsset("/Users/hola/Documents/myworks/learn-aws/Net7Demo/RootOperation/bin/Release/net6.0/publish"),
             Handler = "RootOperation::RootOperation.Function::FunctionHandler",
             FunctionName = "RootOperation-Dev"
         });

@@ -9,3 +9,9 @@ aws cloudformation validate-template --template-body "file:/Users/hola/Documents
 ```
 aws cloudformation deploy --template "file:/Users/hola/Documents/myworks/learn-aws/Net7Demo/deployment.yaml" --stack-name dev-cf-stack --parameter-overrides 
 ```
+
+-- CDK Bootstrap
+```
+    1. cdk bootstrap
+    2. 
+```
