@@ -3,14 +3,14 @@
 namespace CdkDeploy;
 sealed class Program
 {
-    public static void Main(string[] args)
+    public static void Main()
     {
         var app = new App();
-        var stackProps = new StackProps
+        IStackProps stackProps = new StackProps
         {
-            StackName = "CdkDeployStack",
+            Description = "This is a CDK stack for deploying .NET 7 Lambda functions to AWS.",
         };
-        _ = new CdkDeployStack(app, "CdkDeployStack", null);
+        _ = new CdkDeployStack(app, "CdkDeployStack-dev", stackProps);
         app.Synth();
     }
 }

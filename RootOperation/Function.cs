@@ -15,9 +15,13 @@ public class Function
     /// <param name="input"></param>
     /// <param name="context"></param>
     /// <returns></returns>
-    public string FunctionHandler(APIGatewayProxyRequest request, ILambdaContext context)
+    public APIGatewayProxyResponse FunctionHandler(APIGatewayProxyRequest request, ILambdaContext context)
     {
-        var jsonString = JsonSerializer.Serialize(request.Body);
-        return $"RootOperation - {jsonString}";
+        context.Logger.LogInformation(JsonSerializer.Serialize(request));
+        return new APIGatewayProxyResponse
+        {
+            StatusCode = 200,
+            Body = $"RootOperation - {JsonSerializer.Serialize(request)}",
+        };
     }
 }
